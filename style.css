@@ -1,0 +1,45 @@
+body {
+    background-image: url(assets/jpg/yamaha.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #b48e61;
+    color: #000;
+}
+
+p {
+    font-size: 4.5vh;
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+.hit {
+    transform: scale(1.1);
+    border-color: yellow;
+    box-shadow: 0 0 1rem yellow;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20%;
+}
+
+.drum-btn {
+    margin: auto;
+    transition: all 0.07s;
+    width: 7vh;
+    height: 7vh;
+    padding: 1vh;
+    font-family: sans-serif;
+    text-align: center;
+    background: rgb(50, 63, 28, 0.5);
+}
+
+.drum-name {
+    color: yellow;
+    text-transform: uppercase;
+    font-size: 1.5vh;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drum Kit</title>
+    <script type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div btn-key="65" class="drum-btn">
+            <P>A</P>
+            <span class="drum-name">clap</span>
+        </div>
+        <div btn-key="83" class="drum-btn">
+            <P>S</P>
+            <span class="drum-name">hihat</span>
+        </div>
+        <div btn-key="68" class="drum-btn">
+            <P>D</P>
+            <span class="drum-name">kick</span>
+        </div>
+        <div btn-key="70" class="drum-btn">
+            <P>F</P>
+            <span class="drum-name">openhat</span>
+        </div>
+        <div btn-key="71" class="drum-btn">
+            <P>G</P>
+            <span class="drum-name">bass</span>
+        </div>
+        <div btn-key="72" class="drum-btn">
+            <P>H</P>
+            <span class="drum-name">snare</span>
+        </div>
+        <div btn-key="74" class="drum-btn">
+            <P>J</P>
+            <span class="drum-name">tom</span>
+        </div>
+    </div>
+
+    <audio btn-key="65" src='assets/sounds/trap-drum-clap.wav'></audio>
+    <audio btn-key="83" src="assets\sounds\hihat04.wav"></audio>
+    <audio btn-key="68" src="assets\sounds\kick08.wav"></audio>
+    <audio btn-key="70" src="assets\sounds\open-hat.wav"></audio>
+    <audio btn-key="71" src="assets\sounds\bass-drum02.wav"></audio>
+    <audio btn-key="72" src="assets\sounds\kawai-snare.wav"></audio>
+    <audio btn-key="74" src="assets\sounds\electro-tom.wav"></audio>
+
+    <script>
+        function playDrums(e) {
+            const audio = document.querySelector(`audio[btn-key="${e.keyCode}"]`);
+            const btn = document.querySelector(`.drum-btn[btn-key="${e.keyCode}"]`);
+            if(audio == null) return; // no audio for this btn
+
+            btn.classList.add('hit'); 
+            audio.currentTime = 0; // restart playing
+            audio.play();          
+        }
+
+        function cancelTransition(e) {
+            if (e.propertyName !== 'transform') return; // Select a single property to track
+            this.classList.remove('hit'); // remove css class with transformation from btn-key divs
+        }
+
+        // Set listener for each button to cancel transformation after being completed
+        // const keys = Array.from(document.querySelectorAll('.drum-btn'));
+        const keys = document.querySelectorAll('.drum-btn');
+        keys.forEach(key => key.addEventListener('transitionend', cancelTransition)) // transitionEND not transitioned
+
+        window.addEventListener('keydown', playDrums);
+            
+    </script>
+
+</body>
+</html>
